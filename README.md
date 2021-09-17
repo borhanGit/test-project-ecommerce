@@ -20,6 +20,7 @@
 - **Run php artisan migrate --seed**
 - **Run php artisan key:generate**
 ### Login Credential
+- **url: /login**
 - **username: admin@admin.com**
 - **password: password**
 
