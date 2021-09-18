@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -63,5 +64,11 @@ class CartController extends Controller
         session()->flash('success', 'All Item Cart Clear Successfully !');
 
         return redirect()->route('cart.list');
+    }
+    public function checkout()
+    {
+        $cartItems = \Cart::getContent();
+       
+        return view('layouts.checkout',compact('cartItems'));
     }
 }

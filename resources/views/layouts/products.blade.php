@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container px-6 mx-auto">
+        @if ($message = Session::get('success'))
+        <div class="p-4 mb-3 bg-green-400 rounded">
+            <p class="text-green-800">{{ $message }}</p>
+        </div>
+    @endif
         <h3 class="text-2xl font-medium text-gray-700">Product List</h3>
         <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($products as $product)
@@ -12,7 +17,7 @@
                 </div>
                 <div class="px-5 py-3">
                     <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
-                    <span class="mt-2 text-gray-500">${{ $product->price }}</span>
+                    <span class="mt-2 text-gray-500">TK.{{ $product->price }}</span>
                     <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{ $product->id }}" name="id">
