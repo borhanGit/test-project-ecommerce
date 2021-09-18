@@ -74,9 +74,9 @@
                          Total: ${{ Cart::getTotal() }}
                         </div>
                         <div>
-                          <form action="{{ route('cart.clear') }}" method="POST">
+                          <form action="{{ route('checkots') }}" method="">
                             @csrf
-                            <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
+                            <button class="px-6 py-2 text-red-800 bg-red-300">Continue...</button>
                           </form>
                         </div>
 

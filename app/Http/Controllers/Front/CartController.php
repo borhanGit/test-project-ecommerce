@@ -64,4 +64,10 @@ class CartController extends Controller
 
         return redirect()->route('cart.list');
     }
+    public function checkots()
+    {
+        // dd(\Cart::getTotal());
+        // dd($cartItems = \Cart::getContent());
+        return view('layouts.checkout');
+    }
 }

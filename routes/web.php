@@ -9,6 +9,7 @@ Route::group(['namespace' => 'Front'], function () {
     Route::post('update-cart','CartController@updateCart')->name('cart.update');
     Route::post('remove','CartController@removeCart')->name('cart.remove');
     Route::post('clear','CartController@clearAllCart')->name('cart.clear');
+    Route::get('checkots','CartController@checkots')->name('checkots');
   
 
 });
