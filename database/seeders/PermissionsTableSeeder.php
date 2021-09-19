@@ -72,7 +72,7 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 16,
-                'title' => 'user_order_show',
+                'title' => 'user_order',
             ],
             [
                 'id'    => 17,

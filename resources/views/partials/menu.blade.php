@@ -57,7 +57,7 @@
                 </ul>
             </li>
         @endcan
-        @can('user_order_show')
+        @can('user_order')
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.orders") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
