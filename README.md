@@ -15,12 +15,11 @@
 ### Development
 
 - **Clone this Repository**
-- **Run cp .env.example to .env**
 - **Run composer install**
 - **Run php artisan migrate --seed**
 - **Run php artisan key:generate**
 ### Login Credential
-- **url: /login**
+- **url: BaseURL/login**
 - **username: admin@admin.com**
 - **password: password**
 
