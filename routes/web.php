@@ -9,9 +9,15 @@ Route::group(['namespace' => 'Front'], function () {
     Route::post('update-cart','CartController@updateCart')->name('cart.update');
     Route::post('remove','CartController@removeCart')->name('cart.remove');
     Route::post('clear','CartController@clearAllCart')->name('cart.clear');
-    Route::get('checkots','CartController@checkots')->name('checkots');
-  
+    Route::get('checkout','CartController@checkout')->name('checkout');
+    
+    Route::get('/smanager/success', 'SManagerController@success')->name('smanager.success');
+    Route::get('/smanager/fail', 'SManagerController@fail')->name('smanager.fail');
+    Route::group(['middleware' => 'XssSanitizer'], function(){
+        Route::post('order','SManagerController@index')->name('order.store');
+       
 
+    });
 });
 
 
@@ -40,6 +46,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Users
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
+    // Orders
+    Route::get('orders', 'OrdersController@index')->name('orders');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

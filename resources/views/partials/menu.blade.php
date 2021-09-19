@@ -57,6 +57,19 @@
                 </ul>
             </li>
         @endcan
+        @can('order_show')
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route("admin.orders") }}" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
+
+                </i>
+                Orders
+            </a>
+        </li>
+            
+        @endcan
+        
+        
         @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
                 <li class="c-sidebar-nav-item">

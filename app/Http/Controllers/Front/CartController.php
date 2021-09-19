@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -10,7 +11,6 @@ class CartController extends Controller
     public function cartList()
     {
         $cartItems = \Cart::getContent();
-        // dd($cartItems);
         return view('layouts.cart', compact('cartItems'));
     }
 
@@ -18,12 +18,12 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         \Cart::add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
+            'id'         => $request->id,
+            'name'       => $request->name,
+            'price'      => $request->price,
+            'quantity'   => $request->quantity,
             'attributes' => array(
-                'image' => $request->image,
+                'image'  => $request->image,
             )
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
@@ -36,9 +36,9 @@ class CartController extends Controller
         \Cart::update(
             $request->id,
             [
-                'quantity' => [
+                'quantity'     => [
                     'relative' => false,
-                    'value' => $request->quantity
+                    'value'    => $request->quantity
                 ],
             ]
         );
@@ -64,10 +64,10 @@ class CartController extends Controller
 
         return redirect()->route('cart.list');
     }
-    public function checkots()
+    public function checkout()
     {
-        // dd(\Cart::getTotal());
-        // dd($cartItems = \Cart::getContent());
-        return view('layouts.checkout');
+        $cartItems = \Cart::getContent();
+       
+        return view('layouts.checkout',compact('cartItems'));
     }
 }

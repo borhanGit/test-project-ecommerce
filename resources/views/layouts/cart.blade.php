@@ -54,7 +54,7 @@
                               </td>
                               <td class="hidden text-right md:table-cell">
                                 <span class="text-sm font-medium lg:text-base">
-                                    ${{ $item->price }}
+                                    TK.{{ $item->price }}
                                 </span>
                               </td>
                               <td class="hidden text-right md:table-cell">
@@ -71,13 +71,13 @@
                           </tbody>
                         </table>
                         <div>
-                         Total: ${{ Cart::getTotal() }}
+                         Total: TK.{{ Cart::getTotal() }}
                         </div>
                         <div>
-                          <form action="{{ route('checkots') }}" method="">
-                            @csrf
-                            <button class="px-6 py-2 text-red-800 bg-red-300">Continue...</button>
-                          </form>
+                          
+                           
+                            <button onclick="window.location='{{ route("checkout") }}'" class="px-6 py-2 text-red-800 bg-red-300">Checkout...</button>
+                         
                         </div>
 
 
