@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\User;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -33,6 +35,8 @@ class SManagerController extends Controller
                                  ]);
                     $userCreate->roles()->sync(2);
                     if($userCreate->id){
+                           $send_mail = Mail::to($userCreate->email)->send(new SendMail($password,$request->email));
+                        
                         $orderStore = Order::Create([
                             'user_id'        => $userCreate->id,
                             'payment_method' => $request->payment_method,                            
@@ -52,12 +56,12 @@ class SManagerController extends Controller
                             
                         }
                         \Cart::clear();
-                        session()->flash('success', 'Successfully !');
+                        session()->flash('success', 'Successfully !,Please check your email for login');
                         return redirect()->route('products.list');
                     }
             }  catch (\Exception $ex) {
                 session()->flash('error', $ex->getMessage());
-                return redirect()->back();
+                return redirect()->route('products.list');
             }
 
         }
@@ -106,6 +110,7 @@ class SManagerController extends Controller
                            ]);
              $userCreate->roles()->sync(2);
               if($userCreate->id){
+                $send_mail = Mail::to($userCreate->email)->send(new SendMail($password,$userCreate->email));
                   $orderStore = Order::Create([
                       'user_id'        => $userCreate->id,
                       'payment_method' => session()->get('payment_method'),                            
@@ -132,7 +137,7 @@ class SManagerController extends Controller
                   session()->forget('phone');
                   session()->forget('address');
                   session()->forget('payment_method');
-                  session()->flash('success', 'Payment Completed');
+                  session()->flash('success', 'Successfully Payment Complete !,Please check your email for login');
                   return redirect()->route('products.list');
               }
       }  catch (\Exception $ex) {
@@ -140,8 +145,6 @@ class SManagerController extends Controller
           return redirect()->route('products.list');
           
       }
-
-       
      
     }
 

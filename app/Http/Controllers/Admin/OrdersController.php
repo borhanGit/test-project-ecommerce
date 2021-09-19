@@ -13,7 +13,7 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('order_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_order_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $orders = Order::with('orderDetails','user')->get();
         foreach ($orders  as $index => $order) {            
             $orders[$index]['amount'] = OrderDetail::where('order_id',$order->id)->sum('total');

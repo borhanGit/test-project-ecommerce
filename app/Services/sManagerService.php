@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class sManagerService
 {
-    /**
-     * initiatePayment
-     * @param array $info
-     * @return Application|RedirectResponse|Redirector
-     */
+    
     public static function initiatePayment(array $info)
     {
        
@@ -48,13 +44,13 @@ class sManagerService
                 dd($responseJSON);
                 session()->flash('error',$message->error());
                 // flash($message)->error();
-                return redirect()->route('checkout');
+                return redirect()->route('products.list');
             }
             return redirect(url($responseJSON['data']['link']));
 
         } catch (\Exception $ex) {
             session()->flash('error',$ex->getMessage());
-            return redirect()->route('checkout');
+            return redirect()->route('products.list');
         }
     }
  

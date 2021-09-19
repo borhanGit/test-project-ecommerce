@@ -72,16 +72,17 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 16,
-                'title' => 'user_access',
+                'title' => 'user_order_show',
             ],
             [
                 'id'    => 17,
-                'title' => 'profile_password_edit',
+                'title' => 'user_access',
             ],
             [
                 'id'    => 18,
-                'title' => 'order_show',
+                'title' => 'profile_password_edit',
             ],
+            
         ];
 
         Permission::insert($permissions);
